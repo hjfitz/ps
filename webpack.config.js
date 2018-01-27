@@ -4,7 +4,7 @@ const path = require('path');
 const ping = new Notifier({ title: `${process.env.SITE_NAME || 'Built'}` });
 
 
-const output = path.join(__dirname, 'public');
+const output = path.join(__dirname, 'public/javascripts/bundles');
 
 
 module.exports = {
