@@ -8,8 +8,7 @@ const cookieParser = require('cookie-parser');
 const compression = require('compression')();
 const logger = require('morgan')('dev');
 const helmet = require('helmet')();
-const genNonce = require('nonce');
-const applyAuth = require('./authmiddleware');
+const applyAuth = require('./src/server/auth-middleware');
 const api = require('./src/server/routes');
 
 /**

@@ -5,7 +5,7 @@
 
 // main deps
 const http = require('http');
-require('local-env-var')();
+require('local-env-var');
 
 // load our server stuff
 const app = require('../app');

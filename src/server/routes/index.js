@@ -1,5 +1,5 @@
 const express = require('express');
-const login = require('./routes/user');
+const login = require('../routes/user');
 
 const api = express.Router();
 

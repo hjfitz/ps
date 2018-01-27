@@ -4,7 +4,7 @@
 const session = require('express-session');
 const connect = require('connect-redis');
 const redis = require('redis');
-const genNonce = require('./src/server/nonce');
+const genNonce = require('./nonce');
 const path = require('path');
 
 /**
@@ -14,7 +14,7 @@ const url = process.env.REDIS_URL || 'redis://localhost:6379';
 const client = redis.createClient(url);
 const SessionStore = connect(session);
 const store = new SessionStore({ client });
-const login = path.join(__dirname, 'public', 'auth.html');
+const login = path.join(process.cwd(), 'public', 'auth.html');
 const secret = genNonce();
 
 // options for each session

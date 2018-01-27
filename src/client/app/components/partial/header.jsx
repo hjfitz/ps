@@ -5,16 +5,22 @@ import M from 'materialize-css';
 const links = [
   { name: 'Home', path: '/' },
   { name: 'Upload', path: '/upload' },
+  { name: 'Logout', path: '/logout', external: true },
 ];
 
-const NavItem = ({ text, className, path }) => (
-  <li key={text} className={className}><Link to={path}>{text}</Link></li>
-);
+const NavItem = ({
+  text, path, external, className,
+}) => {
+  if (external) {
+    return <li key={text} className={className}><a href={path}>{text}</a></li>;
+  }
+  return <li key={text} className={className}><Link to={path}>{text}</Link></li>;
+};
 
 const renderNav = activeLink => {
-  const nav = links.map(({ name, path }) => {
+  const nav = links.map(({ name, path, external }) => {
     const className = path === activeLink ? 'active' : '';
-    return <NavItem className={className} text={name} path={path} />;
+    return <NavItem key={name} className={className} text={name} path={path} external={external} />;
   });
   return nav;
 };
