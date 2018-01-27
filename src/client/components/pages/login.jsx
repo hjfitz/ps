@@ -1,5 +1,12 @@
 import React, { Component } from 'react';
+import axios from 'axios';
+import SHA256 from 'crypto-js/sha256';
+import CryptoJS from 'crypto-js';
+
+
 import { Button } from '../helper';
+
+const hash = word => SHA256(word).toString(CryptoJS.enc.Base64);
 
 const Input = ({
   type, text, inputRef, className, inputType,
@@ -17,6 +24,7 @@ export default class LoginPage extends Component {
     this.toggleForm = this.toggleForm.bind(this);
     this.login = this.login.bind(this);
     this.register = this.register.bind(this);
+    this.hitEndpoint = this.hitEndpoint.bind(this);
   }
 
   toggleForm() {
@@ -28,18 +36,32 @@ export default class LoginPage extends Component {
     }
   }
 
-  login() {
-    const username = this.user.value;
-    const password = this.pass.value;
-    console.log(username);
-    console.log(password);
+  async hitEndpoint() {
+    if (this.state.pageType === 'login') {
+      await this.login();
+    } else {
+      await this.register();
+    }
   }
 
-  register() {
-    const username = this.user.value;
-    const password = this.pass.value;
-    const confPass = this.newPassConf.value;
-    console.log(username, password, confPass);
+  // TODO: Error handling with modals
+  async login() {
+    const user = this.user.value;
+    const pass = hash(this.pass.value);
+    const { data } = await axios.post('/api/login/info', { user, pass });
+    const { loggedin, reason } = data;
+    if (loggedin) {
+      window.location.href = `${window.location.origin}/`;
+    }
+  }
+
+  // TODO: Error handling with modals
+  async register() {
+    const user = this.user.value;
+    const pass = hash(this.pass.value);
+    const passConf = hash(this.newPassConf.value);
+    const resp = await axios.post('/api/login/create', { user, pass, passConf });
+    console.log(resp);
   }
 
   render() {
@@ -51,6 +73,7 @@ export default class LoginPage extends Component {
       title = 'Register';
       optionButtonText = 'Need to login?';
     }
+
     const formInner = (
       <form className="col s12">
         <div className="login-items">
@@ -70,7 +93,7 @@ export default class LoginPage extends Component {
           </div>
         </div>
         <div className="row">
-          <Button text={title} link="#!" onClick={this.login} classes="light-blue darken-2" />
+          <Button text={title} link="#!" onClick={this.hitEndpoint} classes="light-blue darken-2" />
           <Button
             text={optionButtonText}
             link="#!"

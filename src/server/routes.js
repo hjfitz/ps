@@ -1,8 +1,13 @@
 const express = require('express');
+const login = require('./routes/user');
 
-const router = express.Router();
+const api = express.Router();
+
+api.get('/', (req, res) => {
+  res.send('Welcome to APIv1');
+});
+
+api.use('/login', login);
 
 
-
-
-module.export = router;
+module.exports = api;

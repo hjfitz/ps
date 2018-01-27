@@ -25,3 +25,8 @@ server.listen(port);
 // inform us of the running server
 /* eslint-disable */
 server.on("listening", () => console.log(`Server running on port http://localhost:${port}`));
+
+// delicious error handler
+process.on('unhandledRejection', (reason, p) => {
+  console.log('Unhandled Rejection at:', p, 'reason:', reason);
+});

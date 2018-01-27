@@ -1,0 +1,31 @@
+.login {
+  margin-top: 14vh;
+}
+
+.big-title {
+  width: 100%;
+  display: block;
+  padding: 20px;
+}
+
+.login-items {
+  display:flex;
+  flex-direction:column;
+  justify-content:flex-start;
+  height:250px;
+}
+
+.login-items .row {
+  overflow:hidden;
+  transition:flex 0.3s ease-out;
+  height:auto;
+  flex:1;
+}
+
+.row.collapsed {
+  flex: 0;
+}
+
+.btn {
+  margin: 10px;
+}

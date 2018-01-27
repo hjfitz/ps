@@ -16,6 +16,7 @@ import { Home, Login } from './components/pages';
  */
 import 'materialize-css/dist/css/materialize.css';
 import './styles/main';
+import './styles/login';
 
 /**
  * import service worker

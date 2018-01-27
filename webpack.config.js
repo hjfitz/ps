@@ -1,26 +1,30 @@
-const Notifier = require("webpack-build-notifier");
-
-const ping = new Notifier({ title: `${process.env.SITE_NAME || "Built"}` });
-
+const Notifier = require('webpack-build-notifier');
 const path = require('path');
+
+const ping = new Notifier({ title: `${process.env.SITE_NAME || 'Built'}` });
+
+
 const output = path.join(__dirname, 'public');
 
 
 module.exports = {
-  entry: { bundle: ['./src/client/router.jsx']  },
-  output: { 
+  entry: {
+    bundle: ['./src/client/router.jsx'],
+    login: ['./src/client/login.jsx'],
+  },
+  output: {
     filename: '[name].js',
-    path:  output
+    path: output,
   },
   devtool: 'source-map',
   resolve: {
-    extensions: [".js", ".jsx", ".json", ".css"]
+    extensions: ['.js', '.jsx', '.json', '.css'],
   },
-  module: { 
-    loaders: [ 
+  module: {
+    loaders: [
       {
         test: /\.css$/,
-        use: [ 'style-loader', 'css-loader' ]
+        use: ['style-loader', 'css-loader'],
       },
       {
         test: /\.jsx?$/,
@@ -28,20 +32,20 @@ module.exports = {
         loader: 'babel-loader',
         query: {
           presets: [
-            ['env', { 
-              targets: { 
+            ['@babel/preset-env', {
+              useBuiltIns: 'usage',
+              targets: {
                 browsers: [
                   'last 2 versions',
-                  'ie >= 11'
-                ] 
+                  'ie >= 11',
+                ],
               },
-              debug: true,
             }],
-            'react',
-          ]
-        }
-      } 
-    ] 
+            '@babel/react',
+          ],
+        },
+      },
+    ],
   },
-  plugins: [ping]
+  plugins: [ping],
 };

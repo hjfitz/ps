@@ -4,7 +4,7 @@
 const session = require('express-session');
 const connect = require('connect-redis');
 const redis = require('redis');
-const genNonce = require('nonce');
+const genNonce = require('./src/server/nonce');
 const path = require('path');
 
 /**
@@ -14,11 +14,13 @@ const url = process.env.REDIS_URL || 'redis://localhost:6379';
 const client = redis.createClient(url);
 const SessionStore = connect(session);
 const store = new SessionStore({ client });
-const login = path.join(__dirname, 'public', 'login.html');
+const login = path.join(__dirname, 'public', 'auth.html');
+const secret = genNonce();
 
+// options for each session
 const sessionOptions = {
   store, // use a redis store
-  secret: genNonce(), // generate a random password
+  secret, // use a random password
   saveUninitialized: false,
   resave: false,
   cookie: {
@@ -35,8 +37,8 @@ module.exports = router => {
   // init a session
   router.use(session(sessionOptions));
   // add middleware to check auth
-  router.use((req, res, next) => {
-    if ('session' in req && req.session.authed) {
+  router.get('*', (req, res, next) => {
+    if (req.session.authed) {
       next(); // if we're logged in, procese
     } else {
       res.sendFile(login); // not logged in? don't proceed
