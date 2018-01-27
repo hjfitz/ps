@@ -9,11 +9,11 @@ const output = path.join(__dirname, 'public');
 
 module.exports = {
   entry: {
-    bundle: ['./src/client/app/router.jsx'],
+    main: ['./src/client/app/router.jsx'],
     login: ['./src/client/login/login.jsx'],
   },
   output: {
-    filename: '[name].js',
+    filename: '[name].bundle.js',
     path: output,
   },
   devtool: 'source-map',
