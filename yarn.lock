@@ -2790,9 +2790,9 @@ loader-utils@^1.0.2, loader-utils@^1.1.0:
     emojis-list "^2.0.0"
     json5 "^0.5.0"
 
-local-env-var@^1.0.5:
-  version "1.0.5"
-  resolved "https://registry.yarnpkg.com/local-env-var/-/local-env-var-1.0.5.tgz#c16275a8c14d62e9426897c487119eeca469719e"
+local-env-var@^2.0.1:
+  version "2.0.1"
+  resolved "https://registry.yarnpkg.com/local-env-var/-/local-env-var-2.0.1.tgz#d2c90ba354663cff2cbd30c07d6f83ed4050ca29"
 
 locate-path@^2.0.0:
   version "2.0.0"
