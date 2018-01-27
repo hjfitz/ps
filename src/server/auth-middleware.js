@@ -6,6 +6,9 @@ const connect = require('connect-redis');
 const redis = require('redis');
 const genNonce = require('./nonce');
 const path = require('path');
+const log = require('./logger')('AUTH');
+
+log('Module loaded');
 
 /**
  * set up express session with redis
@@ -39,8 +42,10 @@ module.exports = router => {
   // add middleware to check auth
   router.get('*', (req, res, next) => {
     if (req.session.authed) {
+      log(`Serving ${req.originalUrl} to verified user`);
       next(); // if we're logged in, procese
     } else {
+      log('Authenticating user');
       res.sendFile(login); // not logged in? don't proceed
     }
   });

@@ -5,6 +5,7 @@ import SHA256 from 'crypto-js/sha256';
 import CryptoJS from 'crypto-js';
 
 import 'materialize-css/dist/css/materialize.css';
+
 import '../styles/login.css';
 
 

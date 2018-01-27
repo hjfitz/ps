@@ -5,6 +5,7 @@
 
 // main deps
 const http = require('http');
+const log = require('../src/server/logger')('bin');
 require('local-env-var');
 
 // load our server stuff
@@ -24,7 +25,7 @@ server.listen(port);
 
 // inform us of the running server
 /* eslint-disable */
-server.on("listening", () => console.log(`Server running on port http://localhost:${port}`));
+server.on("listening", () => log(`Server running on port http://localhost:${port}`));
 
 // delicious error handler
 process.on('unhandledRejection', (reason, p) => {

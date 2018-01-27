@@ -3,6 +3,7 @@ const express = require('express');
 const SHA256 = require('crypto-js/sha256');
 const CryptoJS = require('crypto-js');
 const { createUser, checkAuth } = require('../auth/user');
+const log = require('../logger')('User');
 
 const salt = process.env.SALT;
 
@@ -12,6 +13,7 @@ const hashAndSalt = word => _hash(_hash(word) + salt);
 
 router.post('/create', async (req, res) => {
   const { user, pass, passConf } = req.body;
+  log(`Attempting to create user ${user}`);
   const round2Pass = hashAndSalt(pass);
   const round2Conf = hashAndSalt(passConf);
   if (round2Pass === round2Conf) {
@@ -29,6 +31,7 @@ router.post('/create', async (req, res) => {
 // attempt to login
 router.post('/info', async (req, res) => {
   const { user, pass } = req.body;
+  log(`Attempting to log ${user} in`);
   const round2 = hashAndSalt(pass);
   const { loggedin, reason } = await checkAuth(user, round2);
   if (loggedin) {

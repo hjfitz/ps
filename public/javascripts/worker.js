@@ -7,7 +7,7 @@ const cacheName = 'react-boilerplate-1';
 const toCache = [
   '/index.html',
   'https://fonts.googleapis.com/icon?family=Material+Icons',
-  // bundle contains all of our CSS
+  'https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-alpha.3/js/materialize.min.js',
 ];
 
 /**

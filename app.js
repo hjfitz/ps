@@ -4,7 +4,6 @@
 const express = require('express');
 const path = require('path');
 const bodyParser = require('body-parser');
-const cookieParser = require('cookie-parser');
 const compression = require('compression')();
 const logger = require('morgan')('dev');
 const helmet = require('helmet')();
