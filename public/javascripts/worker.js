@@ -6,6 +6,7 @@ const cacheName = 'react-boilerplate-1';
 // this gets redirected to our layout file
 const toCache = [
   '/index.html',
+  'https://fonts.googleapis.com/icon?family=Material+Icons',
   // bundle contains all of our CSS
 ];
 

@@ -9,8 +9,8 @@ const output = path.join(__dirname, 'public');
 
 module.exports = {
   entry: {
-    bundle: ['./src/client/router.jsx'],
-    login: ['./src/client/login.jsx'],
+    bundle: ['./src/client/app/router.jsx'],
+    login: ['./src/client/login/login.jsx'],
   },
   output: {
     filename: '[name].js',

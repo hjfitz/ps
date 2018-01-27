@@ -1,12 +1,22 @@
 import React, { Component } from 'react';
+import ReactDOM from 'react-dom';
 import axios from 'axios';
 import SHA256 from 'crypto-js/sha256';
 import CryptoJS from 'crypto-js';
 
+import 'materialize-css/dist/css/materialize.css';
+import '../styles/login.css';
 
-import { Button } from '../helper';
 
 const hash = word => SHA256(word).toString(CryptoJS.enc.Base64);
+
+const Button = ({
+  text, classes, link, onClick,
+}) => (
+  <a href={link} className={`waves-effect waves-light btn ${classes}`} onClick={onClick}>
+    {text}
+  </a>
+);
 
 const Input = ({
   type, text, inputRef, className, inputType,
@@ -17,7 +27,7 @@ const Input = ({
   </div>
 );
 
-export default class LoginPage extends Component {
+class Login extends Component {
   constructor(props) {
     super(props);
     this.state = { pageType: 'login' };
@@ -119,3 +129,6 @@ export default class LoginPage extends Component {
     );
   }
 }
+
+
+ReactDOM.render(<Login />, document.getElementById('react'));

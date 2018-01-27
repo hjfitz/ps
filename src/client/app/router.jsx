@@ -3,25 +3,25 @@
  */
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { BrowserRouter, Switch, Route } from 'react-router-dom';
+import { BrowserRouter, Route } from 'react-router-dom';
 
 /**
  *  local imports
  */
 import Layout from './components/layout';
-import { Home, Login } from './components/pages';
+import { Home, Upload } from './components/pages';
 
 /**
  * CSS imports
  */
 import 'materialize-css/dist/css/materialize.css';
-import './styles/main';
-import './styles/login';
+import '../styles/main';
+import '../styles/login';
 
 /**
  * import service worker
  */
-import './worker';
+import '../worker';
 
 // scroll the app to the top on a route change
 const onUpdate = () => window.scrollTo(0, 0);
@@ -30,7 +30,7 @@ const onUpdate = () => window.scrollTo(0, 0);
 const router = (
   <BrowserRouter onUpdate={onUpdate}>
     <Layout>
-      <Route exact path="/login" component={Login} />
+      <Route exact path="/upload" component={Upload} />
       <Route exact path="/" component={Home} />
     </Layout>
   </BrowserRouter>
