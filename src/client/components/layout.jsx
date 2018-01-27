@@ -1,9 +1,9 @@
 import React from 'react';
 
 export default ({ children }) => (
-    <div className='layout'>
-      <header />
-      {children}
-      <footer />
-    </div>
+  <div className="layout container">
+    <header />
+    {children}
+    <footer />
+  </div>
 );

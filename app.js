@@ -1,10 +1,14 @@
-const express = require("express");
-const path = require("path");
+/**
+ * server imports
+ */
+const express = require('express');
+const path = require('path');
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 const compression = require('compression')();
 const logger = require('morgan')('dev');
 const helmet = require('helmet')();
+const genNonce = require('nonce');
 
 /**
  * app vars
@@ -12,6 +16,7 @@ const helmet = require('helmet')();
 const app = express();
 const pub = path.join(__dirname, 'public');
 const index = path.join(pub, 'index.html');
+const cookieSecret = genNonce();
 
 /**
  * express middleware
