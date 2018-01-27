@@ -2,3 +2,4 @@ node_modules/
 *.swp
 public/javascripts/bundle*
 .env
+public/images/

@@ -39,7 +39,6 @@ class Login extends Component {
   }
 
   toggleForm() {
-    console.log('clicku');
     if (this.state.pageType === 'login') {
       this.setState({ pageType: 'register' });
     } else {
@@ -72,7 +71,6 @@ class Login extends Component {
     const pass = hash(this.pass.value);
     const passConf = hash(this.newPassConf.value);
     const resp = await axios.post('/api/login/create', { user, pass, passConf });
-    console.log(resp);
   }
 
   render() {

@@ -1,5 +1,6 @@
 const express = require('express');
-const login = require('../routes/user');
+const login = require('./user');
+const images = require('./images');
 
 const api = express.Router();
 
@@ -8,6 +9,7 @@ api.get('/', (req, res) => {
 });
 
 api.use('/login', login);
+api.use('/images', images);
 
 
 module.exports = api;
